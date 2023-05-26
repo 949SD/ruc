@@ -1,14 +1,15 @@
 # Maintainer: David K david.dk949@gmail.com
-pkgname=ruc
+_pkgname=ruc
+pkgname="${_pkgname}-949sd"
 pkgver=unknown
 pkgrel=0
 pkgdesc="Open the EDITOR. Write some code. Have it executed."
 arch=('any')
-url="https://github.com/dk949/$pkgname"
+url="https://github.com/dk949/$_pkgname"
 license=('MIT')
 depends=('python>=3.9')
-provides=("$pkgname")
-source=("git+$url")
+provides=('ruc')
+source=("$pkgname::git+$url")
 md5sums=() #autofill using updpkgsums
 sha256sums=('SKIP')
 
