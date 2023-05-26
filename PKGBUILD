@@ -18,7 +18,7 @@ pkgver() {
 
 build() {
     cd "$pkgname"
-    make
+    make -j
 }
 
 package() {
