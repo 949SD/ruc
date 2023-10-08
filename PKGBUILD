@@ -15,6 +15,7 @@ md5sums=() #autofill using updpkgsums
 sha256sums=('SKIP')
 
 pkgver() {
+    cd "$pkgname"
     awk '/version/ {print gensub(/^.*"([^"]*)".*$/, "\\1", "g")}' Cargo.toml
 }
 
