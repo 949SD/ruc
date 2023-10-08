@@ -4,27 +4,27 @@ pkgname="${_pkgname}-949sd"
 pkgver=unknown
 pkgrel=0
 pkgdesc="Open the EDITOR. Write some code. Have it executed."
-arch=('any')
+arch=('x86_64')
 url="https://github.com/dk949/$_pkgname"
 license=('MIT')
-depends=('python>=3.9')
+depends=()
+makedepends=('rust')
 provides=('ruc')
 source=("$pkgname::git+$url")
 md5sums=() #autofill using updpkgsums
 sha256sums=('SKIP')
 
 pkgver() {
-    git -C "$pkgname" describe | sed 's/-/_/g'
+    awk '/version/ {print gensub(/^.*"([^"]*)".*$/, "\\1", "g")}' Cargo.toml
 }
 
 build() {
     cd "$pkgname"
-    make -j
+    cargo build -r
 }
 
 package() {
     cd "$pkgname"
 
-    make DESTDIR="$pkgdir/" PREFIX="/usr" install
-    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    cargo install --path . --root "$pkgdir/usr"
 }
