@@ -28,4 +28,5 @@ package() {
     cd "$pkgname"
 
     cargo install --path . --root "$pkgdir/usr"
+    strip "$pkgdir/usr/bin/ruc"
 }
